@@ -1,0 +1,41 @@
+{
+  "microphone_off_with_supervisor": {
+    "sample_seconds": 10.0,
+    "cpu_one_core_percent": 0.31,
+    "cpu_whole_machine_percent": 0.02,
+    "working_set_mb": 93.1,
+    "private_commit_mb": 49.6,
+    "processes": 2
+  },
+  "wake_ready_real_whisper_generated_silence": {
+    "sample_seconds": 10.0,
+    "cpu_one_core_percent": 0.47,
+    "cpu_whole_machine_percent": 0.03,
+    "working_set_mb": 226.5,
+    "private_commit_mb": 1621.6,
+    "processes": 1
+  },
+  "wake_state": {
+    "engines": {
+      "chat": {
+        "state": "sleeping",
+        "error": null
+      },
+      "voice": {
+        "state": "sleeping",
+        "error": null
+      },
+      "transcription": {
+        "state": "ready",
+        "error": null
+      }
+    },
+    "orb": "hidden",
+    "paint_timer": false,
+    "capture": "generated silence",
+    "job_count": 0,
+    "poll_ms": 160
+  },
+  "result": "passed",
+  "limitations": "10-second idle samples; silence is generated, not hardware capture. Wake sample excludes the supervisor. No per-frame inference; no chat/TTS models loaded. Real room speech will invoke Whisper and use more CPU."
+}

@@ -1,0 +1,12 @@
+{
+  "result": "passed",
+  "microphone": "not opened",
+  "startup_registration_changed": false,
+  "checks": [
+    "Sign-in-style startup has no visible main window or orb before or after initialization",
+    "Repeated startup keeps exactly the same supervised desktop process",
+    "An actual desktop crash restarts once after backoff, hidden, with the backend reachable",
+    "Stop during crash backoff cancels recovery without relaunching",
+    "Disabling crash recovery prevents an abnormal exit from restarting"
+  ]
+}

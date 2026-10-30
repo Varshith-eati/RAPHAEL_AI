@@ -1,0 +1,208 @@
+{
+  "phase": "optimized",
+  "model": "llama3.2:latest",
+  "max_reply_tokens": 360,
+  "note": "Audio availability is measured, not physical speaker onset. Small sample; P95 is descriptive only.",
+  "samples": [
+    {
+      "category": "simple",
+      "repeat": 1,
+      "cold_model": true,
+      "first_text_seconds": 9.7927,
+      "generation_seconds": 10.4938,
+      "first_audio_available_seconds": 12.4463,
+      "speech_generation_seconds": 1.9525,
+      "voice_cache_hit": false,
+      "speech_chunks": 1,
+      "reply_characters": 35
+    },
+    {
+      "category": "simple",
+      "repeat": 2,
+      "cold_model": false,
+      "first_text_seconds": 0.1049,
+      "generation_seconds": 0.5869,
+      "first_audio_available_seconds": 1.9787,
+      "speech_generation_seconds": 1.3918,
+      "voice_cache_hit": false,
+      "speech_chunks": 1,
+      "reply_characters": 25
+    },
+    {
+      "category": "simple",
+      "repeat": 3,
+      "cold_model": false,
+      "first_text_seconds": 0.115,
+      "generation_seconds": 0.5735,
+      "first_audio_available_seconds": 0.584,
+      "speech_generation_seconds": 0.0105,
+      "voice_cache_hit": true,
+      "speech_chunks": 1,
+      "reply_characters": 25
+    },
+    {
+      "category": "normal",
+      "repeat": 1,
+      "cold_model": false,
+      "first_text_seconds": 0.5135,
+      "generation_seconds": 4.7486,
+      "first_audio_available_seconds": 5.3858,
+      "speech_generation_seconds": 14.0364,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 276
+    },
+    {
+      "category": "normal",
+      "repeat": 2,
+      "cold_model": false,
+      "first_text_seconds": 0.147,
+      "generation_seconds": 2.898,
+      "first_audio_available_seconds": 4.9752,
+      "speech_generation_seconds": 10.1315,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 202
+    },
+    {
+      "category": "normal",
+      "repeat": 3,
+      "cold_model": false,
+      "first_text_seconds": 0.1267,
+      "generation_seconds": 4.2945,
+      "first_audio_available_seconds": 5.1382,
+      "speech_generation_seconds": 12.1998,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 263
+    },
+    {
+      "category": "reasoning",
+      "repeat": 1,
+      "cold_model": false,
+      "first_text_seconds": 0.6408,
+      "generation_seconds": 5.533,
+      "first_audio_available_seconds": 6.6196,
+      "speech_generation_seconds": 14.6372,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 314
+    },
+    {
+      "category": "reasoning",
+      "repeat": 2,
+      "cold_model": false,
+      "first_text_seconds": 0.1149,
+      "generation_seconds": 5.2408,
+      "first_audio_available_seconds": 5.3449,
+      "speech_generation_seconds": 14.6117,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 328
+    },
+    {
+      "category": "reasoning",
+      "repeat": 3,
+      "cold_model": false,
+      "first_text_seconds": 0.1049,
+      "generation_seconds": 5.2328,
+      "first_audio_available_seconds": 1.0184,
+      "speech_generation_seconds": 15.5978,
+      "voice_cache_hit": false,
+      "speech_chunks": 3,
+      "reply_characters": 388
+    }
+  ],
+  "summary": {
+    "simple": {
+      "first_text_seconds": {
+        "count": 3,
+        "mean": 3.3375333333333335,
+        "median": 0.115,
+        "p95": 8.824929999999998,
+        "max": 9.7927
+      },
+      "generation_seconds": {
+        "count": 3,
+        "mean": 3.8847333333333336,
+        "median": 0.5869,
+        "p95": 9.50311,
+        "max": 10.4938
+      },
+      "first_audio_available_seconds": {
+        "count": 3,
+        "mean": 5.003,
+        "median": 1.9787,
+        "p95": 11.39954,
+        "max": 12.4463
+      },
+      "speech_generation_seconds": {
+        "count": 3,
+        "mean": 1.1182666666666665,
+        "median": 1.3918,
+        "p95": 1.8964299999999998,
+        "max": 1.9525
+      }
+    },
+    "normal": {
+      "first_text_seconds": {
+        "count": 3,
+        "mean": 0.26239999999999997,
+        "median": 0.147,
+        "p95": 0.4768499999999999,
+        "max": 0.5135
+      },
+      "generation_seconds": {
+        "count": 3,
+        "mean": 3.980366666666667,
+        "median": 4.2945,
+        "p95": 4.703189999999999,
+        "max": 4.7486
+      },
+      "first_audio_available_seconds": {
+        "count": 3,
+        "mean": 5.1664,
+        "median": 5.1382,
+        "p95": 5.36104,
+        "max": 5.3858
+      },
+      "speech_generation_seconds": {
+        "count": 3,
+        "mean": 12.122566666666668,
+        "median": 12.1998,
+        "p95": 13.85274,
+        "max": 14.0364
+      }
+    },
+    "reasoning": {
+      "first_text_seconds": {
+        "count": 3,
+        "mean": 0.28686666666666666,
+        "median": 0.1149,
+        "p95": 0.58821,
+        "max": 0.6408
+      },
+      "generation_seconds": {
+        "count": 3,
+        "mean": 5.335533333333333,
+        "median": 5.2408,
+        "p95": 5.503780000000001,
+        "max": 5.533
+      },
+      "first_audio_available_seconds": {
+        "count": 3,
+        "mean": 4.327633333333333,
+        "median": 5.3449,
+        "p95": 6.4921299999999995,
+        "max": 6.6196
+      },
+      "speech_generation_seconds": {
+        "count": 3,
+        "mean": 14.9489,
+        "median": 14.6372,
+        "p95": 15.50174,
+        "max": 15.5978
+      }
+    }
+  }
+}

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b0c">
+  <meta name="description" content="Raphael — an interactive, personal AI. Real conversation and a soft voice, on your computer.">
+  <title>Raphael · Local conversation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-state="idle" data-palette="sage">
+  <svg class="icon-defs" aria-hidden="true"><defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2 14.7 9.3 22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7Z"/><path d="m12 7 1.4 3.6L17 12l-3.6 1.4L12 17l-1.4-3.6L7 12l3.6-1.4Z"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><path d="m11 4-5 5H3v6h3l5 5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="m5 3 4-1 2 5-3 2c1 4 3 6 7 7l2-3 5 2-1 4c-.3 2-2 3-4 2C9 20 4 15 2 7c-.5-2 1-4 3-4Z"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 15a3 3 0 0 1-3 3H9l-6 4V6a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3Z"/><path d="M7 8h9M7 12h6"/></symbol>
+    <symbol id="i-memory" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M8 2v3m8-3v3M8 19v3m8-3v3M2 8h3m-3 8h3m14-8h3m-3 8h3"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6Z"/><path d="m8 11 3 3 5-5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></symbol>
+  </defs></svg>
+  <div id="app">
+    <header class="topbar">
+      <a href="#" class="brand" aria-label="Raphael home" id="homeButton">
+        <span class="brand-mark"><svg><use href="#i-spark"/></svg></span>
+        <span><strong>RAPHAEL</strong><small>PERSONAL INTELLIGENCE</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" id="coreNav" aria-current="page"><span class="nav-dot"></span>Core</button>
+        <button class="nav-item" data-panel="conversation"><svg><use href="#i-chat"/></svg>Conversation<span class="count" id="conversationCount" hidden>0</span></button>
+        <button class="nav-item" data-panel="memory"><svg><use href="#i-memory"/></svg>Memory</button>
+        <button class="nav-item" data-panel="voice"><svg><use href="#i-mic"/></svg>Voice</button>
+        <button class="nav-item" data-panel="laptop"><svg><use href="#i-shield"/></svg>Laptop</button>
+      </nav>
+      <div class="header-actions">
+        <span class="preview-badge"><span></span>LOCAL CONVERSATION · V3</span>
+        <button class="icon-button" data-panel="appearance" aria-label="Customize appearance" title="Customize appearance"><svg><use href="#i-settings"/></svg></button>
+        <button class="icon-button" id="focusButton" aria-label="Enter focus view" aria-pressed="false" title="Focus view"><svg><use href="#i-expand"/></svg></button>
+      </div>
+    </header>
+
+    <main class="experience">
+      <div class="stage" id="stage">
+        <canvas id="coreCanvas" role="img" aria-label="Animated Raphael core: a radiant center with rotating geometric rings and floating particles"></canvas>
+        <div class="vignette" aria-hidden="true"></div>
+        <div class="coordinate coordinate-top" aria-hidden="true">R / 01 <span>COGNITIVE SPACE</span></div>
+        <div class="coordinate coordinate-right" aria-hidden="true">EST. 2026 <span>CONCEPT — 01</span></div>
+        <div class="orbit-label orbit-label-left" aria-hidden="true"><span>01</span> COGNITION <i></i></div>
+        <div class="orbit-label orbit-label-right" aria-hidden="true"><i></i> RESONANCE <span>02</span></div>
+        <div class="core-caption"><span class="core-caption-line"></span><span id="coreCaption">AWAITING YOUR INTENT</span><span class="core-caption-line"></span></div>
+      </div>
+
+      <aside class="session-panel edge-panel">
+        <div class="eyebrow">A VOICE IN THE LIGHT</div>
+        <h2>A quiet presence.<br>A limitless mind.</h2>
+        <p>Ready when you are.</p>
+        <div class="session-details">
+          <div><span>Intelligence</span><button class="detail-value connection-link" id="chatConnection" data-panel="connection">Connecting…</button></div>
+          <div><span>Microphone</span><button class="detail-value connection-link" id="micConnection" data-panel="voice">Off · tap mic to start</button></div>
+          <div><span>Voice</span><span class="detail-value" id="voiceConnection">Checking… <i class="hollow-dot"></i></span></div>
+        </div>
+        <div class="privacy-note"><svg><use href="#i-shield"/></svg><span>Chat and voice stay on this computer.</span></div>
+      </aside>
+
+
+
+      <section class="command-area" aria-labelledby="greeting">
+        <div class="status-label"><span class="status-light"></span><span id="statusLabel">RAPHAEL IS READY</span></div>
+        <h1 id="greeting">How can I help you?</h1>
+        <p class="subtitle" id="subtitle">A thought, a question, a possibility. Start anywhere.</p>
+        <div class="reply-preview" id="replyPreview" hidden aria-live="polite"></div>
+        <button class="approval-notice" id="approvalNotice" data-panel="laptop" hidden><span id="approvalCount">A file change needs your review</span><b>Review ↗</b></button>
+        <form class="command-box" id="commandForm">
+          <span class="input-emblem" aria-hidden="true"><svg><use href="#i-spark"/></svg></span>
+          <label class="sr-only" for="messageInput">Message Raphael</label>
+          <input id="messageInput" type="text" placeholder="Ask Raphael anything…" autocomplete="off" maxlength="2000">
+          <kbd class="input-shortcut" aria-hidden="true">/</kbd>
+          <span class="input-divider"></span>
+          <button class="voice-button" id="voiceButton" type="button" aria-label="Start microphone" aria-pressed="false" title="Start microphone"><svg><use href="#i-mic"/></svg></button>
+          <button class="send-button" type="submit" aria-label="Send message" title="Send message"><svg><use href="#i-arrow"/></svg></button>
+        </form>
+        <div class="microphone-controls" id="microphoneControls" hidden>
+          <button type="button" class="secondary-button" id="micToggle"><svg><use href="#i-mic"/></svg><span>Start microphone</span></button>
+          <div class="microphone-feedback"><span id="microphoneStatus" role="status">Microphone is off.</span><div class="microphone-meter"><i id="microphoneMeter"></i></div></div>
+        </div>
+        <p class="heard-text" id="heardText" hidden></p>
+        <div class="conversation-tools" aria-label="Voice controls">
+          <button type="button" id="replyVoiceToggle" aria-label="Spoken replies" aria-pressed="true" title="Turn spoken AI replies on or off"><svg><use href="#i-speaker"/></svg><span>Spoken replies</span><b id="replyVoiceValue">On</b></button>
+          <button type="button" id="readTypedText" title="Read the text in the message box aloud">Read aloud</button>
+          <button type="button" id="callButton" aria-label="Start a voice call" aria-pressed="false"><svg><use href="#i-phone"/></svg><span>Call Raphael</span></button>
+        </div>
+        <div class="call-controls" id="callControls" hidden aria-label="Voice call controls">
+          <div class="call-feedback"><span class="call-light"></span><div><strong id="callTitle">Local voice call</strong><span id="callStatus" role="status">Listening…</span></div></div>
+          <div class="call-actions"><button type="button" id="interruptCall" hidden>Interrupt</button><button type="button" id="muteCall" aria-pressed="false">Mute</button><button type="button" id="endCall">End call</button></div>
+        </div>
+        <div class="suggestions" id="suggestions">
+          <button data-prompt="Help me plan my day"><span>↗</span> Plan my day</button>
+          <button data-prompt="Help me explore an idea"><span>✧</span> Explore an idea</button>
+          <button data-prompt="Help me draft a message"><span>↗</span> Draft a message</button>
+        </div>
+        <button class="stop-button" id="stopButton" hidden><svg><use href="#i-stop"/></svg>Stop</button>
+      </section>
+    </main>
+
+    <footer class="statusbar"><div><span class="footer-dot"></span>RAPHAEL V3 <span class="footer-separator">/</span><span><span id="footerConnection">CONNECTING LOCALLY</span></span></div><a class="original-link" href="original-interface.html">Original interface ↗</a><button id="motionButton" aria-pressed="false"><span class="motion-dot"></span><span id="motionLabel">Motion on</span></button></footer>
+    <button class="exit-focus" id="exitFocus"><svg><use href="#i-expand"/></svg>Exit focus</button>
+  </div>
+
+  <dialog class="drawer" id="detailDialog" aria-labelledby="drawerTitle">
+    <div class="drawer-header"><div><span class="eyebrow" id="drawerEyebrow">YOUR RAPHAEL</span><h2 id="drawerTitle">Appearance</h2></div><button class="icon-button" id="closeDrawer" aria-label="Close panel"><svg><use href="#i-close"/></svg></button></div>
+    <section class="drawer-section" id="appearancePanel">
+      <p class="panel-intro">Make the core feel like you.</p>
+      <fieldset class="palette-options"><legend>Light spectrum</legend>
+        <button class="palette-option selected" data-palette-option="sage" aria-pressed="true"><span class="palette-swatch sage-swatch"></span><span>Sage spectrum<small>Ivory · cyan · chartreuse</small></span><span class="palette-check">✓</span></button>
+        <button class="palette-option" data-palette-option="azure" aria-pressed="false"><span class="palette-swatch azure-swatch"></span><span>Celestial blue<small>Ice · silver · deep blue</small></span><span class="palette-check">✓</span></button>
+        <button class="palette-option" data-palette-option="gold" aria-pressed="false"><span class="palette-swatch gold-swatch"></span><span>Raphael gold<small>Amber · pearl · rose</small></span><span class="palette-check">✓</span></button>
+      </fieldset>
+      <div class="range-field"><label for="glowRange">Core radiance <output id="glowValue">70%</output></label><input id="glowRange" type="range" min="15" max="100" value="70"></div>
+      <div class="range-field"><label for="motionRange">Motion speed <output id="speedValue">1.0×</output></label><input id="motionRange" type="range" min="2" max="18" value="10"></div>
+      <label class="toggle-field"><span>Floating particles<small>Small fragments of light in the void</small></span><input type="checkbox" id="particlesToggle" checked><span class="switch"></span></label>
+      <label class="toggle-field"><span>Reduced motion<small>Keep the core still and serene</small></span><input type="checkbox" id="reduceToggle"><span class="switch"></span></label>
+      <button class="secondary-button full-width" id="resetAppearance">Reset appearance</button>
+      <p class="panel-footnote">Design preferences last for this tab session.</p>
+      <details class="core-explorer"><summary><svg><use href="#i-spark"/></svg>Explore the core<span aria-hidden="true">+</span></summary>
+      <div class="core-controls">
+        <div class="state-heading">Core states <span>04 STATES</span></div>
+        <div class="state-options" role="group" aria-label="Core state">
+          <button class="state-option selected" data-state-option="idle" aria-pressed="true"><span class="state-glyph idle-glyph"></span><span>Idle<small>A gentle, steady presence</small></span><span class="state-number">01</span></button>
+          <button class="state-option" data-state-option="listening" aria-pressed="false"><span class="state-glyph wave-glyph"><i></i><i></i><i></i><i></i></span><span>Listening<small>Attuned to your voice</small></span><span class="state-number">02</span></button>
+          <button class="state-option" data-state-option="thinking" aria-pressed="false"><span class="state-glyph thinking-glyph"></span><span>Thinking<small>Connecting the possibilities</small></span><span class="state-number">03</span></button>
+          <button class="state-option" data-state-option="speaking" aria-pressed="false"><span class="state-glyph speaking-glyph"></span><span>Speaking<small>Thought, given a voice</small></span><span class="state-number">04</span></button>
+        </div>
+        <button class="demo-button" id="demoButton"><svg><use href="#i-play"/></svg><span>Hear Raphael</span><span class="duration">SOFT VOICE</span></button>
+        <p class="demo-note">A softer voice · a familiar presence<br>Text and voice conversation · local</p>
+        <button class="voice-studio-link" data-panel="voice">Voice &amp; sound <span>↗</span></button><button class="voice-studio-link" data-panel="connection">Connection settings <span>↗</span></button>
+      </div>
+      </details>
+    </section>
+    <section class="drawer-section" id="conversationPanel" hidden>
+      <div class="panel-toolbar"><span>THIS CONVERSATION</span><button id="clearConversation" class="text-button">Clear</button></div>
+      <p class="panel-footnote" id="contextNotice" role="status" hidden>Raphael is using the latest messages for new replies. Earlier messages are still shown here. Save lasting preferences in Memory.</p>
+      <div class="conversation-list" id="conversationList" role="log" aria-label="Conversation with Raphael" aria-live="polite"><div class="empty-state"><svg><use href="#i-chat"/></svg><h3>A little space to think.</h3><p>Ask a question below the core. Raphael uses your local model and remembers this conversation while the tab is open.</p></div></div>
+      <button class="secondary-button full-width" id="backToComposer">Back to the core <span>↗</span></button>
+    </section>
+    <section class="drawer-section" id="memoryPanel" hidden>
+      <p class="panel-intro">The things you choose to keep.</p>
+      <label for="preferredName" class="field-label">What should I call you? <span class="optional">Optional</span></label><div class="name-row"><input id="preferredName" maxlength="60" placeholder="Your preferred name"><button id="saveName" class="secondary-button">Save</button></div><div class="memory-empty" id="memoryEmpty"><svg><use href="#i-memory"/></svg><h3>A fresh start.</h3><p>Keep preferences you want Raphael to use. Only notes you save here become lasting memory.</p></div>
+      <div id="memoryList" class="memory-list"></div>
+      <form id="memoryForm"><label for="memoryInput" class="field-label">A note for Raphael</label><textarea id="memoryInput" placeholder="e.g. I prefer concise answers." maxlength="500" rows="3" required></textarea><button class="secondary-button full-width" type="submit">Save preference <span>+</span></button></form>
+      <p class="panel-footnote">Your saved name and notes stay in a database on this computer, available across browsers. You can remove them at any time. Conversation messages clear when you refresh.</p>
+    </section>
+    <section class="drawer-section" id="voicePanel" hidden>
+      <p class="panel-intro">A softer, closer voice.</p>
+      <div class="live-settings"><strong>Talk naturally</strong><p>Start a call once. Speak, pause, and Raphael answers aloud, then listens again.</p><button type="button" class="secondary-button full-width" id="startCallFromSettings">Call Raphael</button>
+        <label class="toggle-field"><span>Wake with “Hey Raphael”<small>Enable for this session while the page stays open</small></span><input type="checkbox" id="enableWake"><span class="switch"></span></label>
+        <p class="panel-footnote">Wake listening keeps the microphone on and checks spoken phrases locally. Say “Hey Raphael,” pause for her greeting, then ask your question. End call switches the microphone off. Say “go to sleep” to return to wake listening.</p>
+        <label class="field-label" for="callPause">Wait after I stop speaking</label><select id="callPause"><option value="1.2">Natural · 1.2 seconds</option><option value="2">Relaxed · 2 seconds</option></select>
+        <p class="panel-footnote">The microphone pauses during replies to avoid picking up Raphael's voice. Use Interrupt to speak sooner. The microphone icon in the message box still records a single message.</p>
+      </div>
+      <div class="microphone-settings"><strong>Microphone · on demand</strong><p id="transcriptionStatus" role="status">Checking local speech recognition…</p><label class="field-label" for="inputLanguage">Your spoken language</label><select id="inputLanguage"><option value="en">English</option><option value="hi">Hindi</option><option value="auto">Detect automatically</option></select><button type="button" class="secondary-button full-width" id="startMicFromSettings">Start microphone</button><p class="panel-footnote">Click Start microphone and allow browser access. Speak, then click Finish &amp; send. Each recording stops after 30 seconds. The microphone switches off before Raphael replies.</p></div>
+      <div class="voice-service"><span class="status-light"></span><span id="voiceServiceStatus" role="status">Connecting to your local voice…</span></div>
+      <label class="field-label" for="referenceSelect">Choose her voice</label>
+      <select id="referenceSelect"><option value="heart">Soft · Heart</option><option value="bella">Bright · Bella</option><option value="sarah">Gentle · Sarah</option></select>
+      <p class="panel-footnote">Natural feminine voices with clean, close sound. No room or echo effects.</p>
+      <label class="toggle-field"><span>Read replies aloud<small>You can keep chatting with voice switched off</small></span><input type="checkbox" id="autoSpeak" checked><span class="switch"></span></label>
+      <label class="field-label" for="speakInput">Try a sentence</label>
+      <textarea id="speakInput" rows="3" maxlength="1200">Hello. I'm here with you. What would you like to talk about today?</textarea>
+      <div class="voice-actions"><button class="secondary-button voice-primary" id="speakText"><svg><use href="#i-play"/></svg>Hear voice</button><button class="secondary-button" id="stopVoice"><svg><use href="#i-stop"/></svg>Stop</button></div>
+      <p class="voice-progress" id="voiceProgress" role="status">Ready when you are.</p>
+      <div class="level-header"><span>VOICE LEVEL</span><span id="playbackLevel">0%</span></div><div class="audio-meter"><div id="audioMeterFill"></div></div>
+      <div class="range-field"><label for="voiceSpeed">Speaking pace <output id="voiceSpeedValue">1.00×</output></label><input id="voiceSpeed" type="range" min="80" max="120" value="100"></div>
+      <div class="range-field"><label for="voiceVolume">Volume <output id="voiceVolumeValue">65%</output></label><input id="voiceVolume" type="range" min="0" max="100" value="65"></div>
+      <p class="panel-footnote">Recognition and voice generation stay on this computer. The orb follows the microphone while recording and the voice while speaking. The current output voices speak English.</p>
+    </section>
+    <section class="drawer-section" id="connectionPanel" hidden>
+      <p class="panel-intro">Your intelligence, on your computer.</p>
+      <div class="voice-service"><span class="status-light"></span><span id="connectionStatus" role="status">Checking local models…</span></div>
+      <label class="field-label" for="modelSelect">Conversation model</label><select id="modelSelect"><option value="">Loading local models…</option></select>
+      <p class="panel-footnote">Qwen handles thoughtful conversation. Llama is a smaller alternative. Both use models already installed on this computer.</p>
+      <button id="retryConnection" class="secondary-button full-width">Check connection again</button>
+      <form id="realtimeSettings" class="microphone-settings">
+        <h3>Background &amp; Real-Time Interaction</h3>
+        <label class="toggle-field"><span>Stream replies<small>Show text while Raphael thinks</small></span><input id="streamReplies" type="checkbox" checked><span class="switch"></span></label>
+        <label class="toggle-field"><span>Stream speech<small>Prepare phrases before the answer finishes</small></span><input id="streamSpeech" type="checkbox" checked><span class="switch"></span></label>
+        <label class="toggle-field"><span>Speak to interrupt<small>Keeps the microphone on during calls; headphones recommended</small></span><input id="bargeIn" type="checkbox"><span class="switch"></span></label>
+        <label class="toggle-field"><span>Choose models automatically<small>Select Automatic above to use routing</small></span><input id="routeModels" type="checkbox"><span class="switch"></span></label>
+        <label class="field-label" for="endpointSilence">Pause before answering</label>
+        <select id="endpointSilence"><option value="0.6">Quick · 0.6 seconds</option><option value="0.9">Balanced · 0.9 seconds</option><option value="1.2">Natural · 1.2 seconds</option><option value="2">Relaxed · 2 seconds</option></select>
+        <label class="toggle-field"><span>Save performance timings<small>No conversation text or recordings</small></span><input id="performanceLogs" type="checkbox"><span class="switch"></span></label>
+        <button class="secondary-button full-width" type="submit">Save interaction settings</button>
+        <button class="secondary-button full-width" type="button" id="desktopSettings">Desktop, wake phrase &amp; startup settings</button>
+        <button class="secondary-button full-width" type="button" id="activateDesktop">Activate floating orb</button>
+        <p class="panel-footnote" id="realtimeStatus" role="status">Changes are saved on this computer.</p>
+      </form>
+      <p id="connectionDetails" class="panel-footnote"></p>
+      <div class="scope-card"><strong>Raphael can</strong><p>Answer questions, explain ideas, help plan, and draft text. Type or call, with written or spoken replies. Laptop access adds system details, supported apps and workspace text files with approval before changes.</p><strong>Still to come</strong><p>Live web information and reminders.</p></div>
+      <p class="panel-footnote">No API key. No cloud fallback. Refreshing clears the conversation. Your saved name and notes stay on this computer until you remove them.</p>
+    </section>
+    <section class="drawer-section" id="laptopPanel" hidden>
+      <p class="panel-intro">Your laptop. Your permission.</p>
+      <label class="toggle-field" for="laptopEnabled"><span>Laptop access <small id="laptopStatus">Connecting…</small></span><input id="laptopEnabled" type="checkbox"><span class="switch" aria-hidden="true"></span></label>
+      <p class="panel-footnote">Open apps and websites, read system details, and work with your workspace. Browsing or reading elsewhere asks for approval each time. File changes also need approval. Turning access off cancels pending requests.</p>
+      <label class="field-label">Raphael Workspace</label><p class="workspace-path" id="workspacePath"></p>
+      <p class="panel-footnote">Text, Markdown, CSV, JSON, YAML and log files up to 32 KB. To share a file with Raphael, place a copy here.</p>
+      <div class="laptop-apps" id="laptopApps"></div>
+      <p class="panel-footnote">Websites open in Chrome when installed, otherwise your default browser. They use the internet. Raphael does not read your inbox or operate your accounts.</p>
+      <details class="file-access" id="fileAccess"><summary>Browse files on this laptop</summary>
+        <p class="panel-footnote">Choose a location or paste a full path. You review the exact location before Raphael lists or reads it. Outside the workspace, access is read-only.</p>
+        <div class="laptop-apps" id="filePlaces"></div>
+        <form id="fileAccessForm"><label class="field-label" for="fileAccessPath">Folder or file path</label><input id="fileAccessPath" type="text" placeholder="Downloads or C:\Users\…" maxlength="700" required>
+          <div class="approval-actions"><button class="secondary-button" type="submit" value="browse_folder">Browse folder</button><button class="secondary-button" type="submit" value="read_file">Read text file</button></div>
+        </form>
+      </details>
+      <button id="checkHardware" class="secondary-button full-width">Check this laptop's hardware</button>
+      <pre id="hardwareResult" class="hardware-result" role="status"></pre>
+      <h3>Review requests</h3><p class="panel-footnote" id="laptopNotice" role="status">No requests waiting for approval.</p>
+      <div id="laptopApprovals"></div>
+      <p class="panel-footnote">Approvals are separate from chat and voice. Reading supports text, Markdown, CSV, JSON, YAML and log files up to 32 KB. Windows permissions still apply. Screen control, deletion, installations and system changes are outside this access.</p>
+    </section>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  
+  <script src="laptop.js"></script>
+  <script src="voice.js"></script>
+  <script src="microphone.js"></script>
+  <script src="live-call.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

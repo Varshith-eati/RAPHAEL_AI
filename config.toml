@@ -1,0 +1,41 @@
+# Restart Raphael after changing settings. Processing always stays on loopback.
+data_dir = "runtime"
+
+[server]
+port = 8768
+max_body_bytes = 70000
+request_timeout_seconds = 15
+
+[chat]
+port = 11436
+models = ["llama3.2:latest", "qwen3.5:4b"]
+models_dir = "models/ollama"
+executable = "engines/ollama/ollama.exe"
+context_tokens = 4096
+max_reply_tokens = 360
+threads = 6
+temperature = 0.65
+timeout_seconds = 150
+startup_timeout_seconds = 60
+
+[voice]
+# All configured models are included in this complete package.
+model = "models/kokoro-v1.0.onnx"
+voices = "models/voices-v1.0.bin"
+threads = 4
+cache_bytes = 16000000
+
+[jobs]
+queue_size = 2
+max_records = 24
+retention_seconds = 900
+deadline_seconds = 240
+
+[transcription]
+model = "models/whisper-base"
+threads = 4
+language = "en"
+
+[laptop]
+enabled = true
+workspace = "~/Documents/Raphael Workspace"

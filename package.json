@@ -1,0 +1,13 @@
+{
+  "name": "raphael-ai-local",
+  "version": "0.6.2",
+  "private": true,
+  "description": "Optional JavaScript and browser tests for Raphael; not needed to run the assistant",
+  "scripts": {
+    "test": "node tests/voice-stream-unit.cjs && node tests/live-call-unit.cjs",
+    "test:interface": "node tests/interface-regression.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

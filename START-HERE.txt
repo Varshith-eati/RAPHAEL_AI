@@ -1,0 +1,6 @@
+RAPHAEL 0.6.2 — SOURCE REPOSITORY
+
+Read README.md for requirements, VS Code, startup and troubleshooting.
+This source checkout excludes engines, models and private runtime data.
+Copy engines and models from the complete package into this folder, or follow
+the manual Python/Ollama/model setup in README.md before launching.

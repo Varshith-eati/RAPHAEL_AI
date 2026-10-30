@@ -1,0 +1,168 @@
+{
+  "phase": "baseline",
+  "model": "llama3.2:latest",
+  "max_reply_tokens": 360,
+  "note": "Audio availability is measured, not physical speaker onset. Small sample; P95 is descriptive only.",
+  "samples": [
+    {
+      "category": "simple",
+      "repeat": 1,
+      "cold_model": true,
+      "first_text_seconds": 41.5188,
+      "generation_seconds": 41.5188,
+      "first_audio_available_seconds": 43.7741,
+      "speech_generation_seconds": 2.2553,
+      "voice_cache_hit": false,
+      "reply_characters": 16
+    },
+    {
+      "category": "simple",
+      "repeat": 2,
+      "cold_model": false,
+      "first_text_seconds": 2.4937,
+      "generation_seconds": 2.4937,
+      "first_audio_available_seconds": 2.5043,
+      "speech_generation_seconds": 0.0106,
+      "voice_cache_hit": true,
+      "reply_characters": 16
+    },
+    {
+      "category": "simple",
+      "repeat": 3,
+      "cold_model": false,
+      "first_text_seconds": 2.6515,
+      "generation_seconds": 2.6516,
+      "first_audio_available_seconds": 2.662,
+      "speech_generation_seconds": 0.0104,
+      "voice_cache_hit": true,
+      "reply_characters": 16
+    },
+    {
+      "category": "normal",
+      "repeat": 1,
+      "cold_model": false,
+      "first_text_seconds": 8.2582,
+      "generation_seconds": 8.2582,
+      "first_audio_available_seconds": 15.9514,
+      "speech_generation_seconds": 7.6932,
+      "voice_cache_hit": false,
+      "reply_characters": 197
+    },
+    {
+      "category": "normal",
+      "repeat": 2,
+      "cold_model": false,
+      "first_text_seconds": 7.69,
+      "generation_seconds": 7.69,
+      "first_audio_available_seconds": 7.7005,
+      "speech_generation_seconds": 0.0106,
+      "voice_cache_hit": true,
+      "reply_characters": 197
+    },
+    {
+      "category": "normal",
+      "repeat": 3,
+      "cold_model": false,
+      "first_text_seconds": 7.9179,
+      "generation_seconds": 7.9179,
+      "first_audio_available_seconds": 7.9284,
+      "speech_generation_seconds": 0.0105,
+      "voice_cache_hit": true,
+      "reply_characters": 197
+    },
+    {
+      "category": "reasoning",
+      "repeat": 1,
+      "error": "empty_reply",
+      "elapsed_seconds": 11.051
+    },
+    {
+      "category": "reasoning",
+      "repeat": 2,
+      "error": "empty_reply",
+      "elapsed_seconds": 10.0272
+    },
+    {
+      "category": "reasoning",
+      "repeat": 3,
+      "error": "empty_reply",
+      "elapsed_seconds": 9.7141
+    }
+  ],
+  "summary": {
+    "simple": {
+      "first_text_seconds": {
+        "count": 3,
+        "mean": 15.554666666666666,
+        "median": 2.6515,
+        "p95": 37.63207,
+        "max": 41.5188
+      },
+      "generation_seconds": {
+        "count": 3,
+        "mean": 15.5547,
+        "median": 2.6516,
+        "p95": 37.632079999999995,
+        "max": 41.5188
+      },
+      "first_audio_available_seconds": {
+        "count": 3,
+        "mean": 16.313466666666667,
+        "median": 2.662,
+        "p95": 39.66288999999999,
+        "max": 43.7741
+      },
+      "speech_generation_seconds": {
+        "count": 3,
+        "mean": 0.7587666666666667,
+        "median": 0.0106,
+        "p95": 2.03083,
+        "max": 2.2553
+      }
+    },
+    "normal": {
+      "first_text_seconds": {
+        "count": 3,
+        "mean": 7.955366666666667,
+        "median": 7.9179,
+        "p95": 8.22417,
+        "max": 8.2582
+      },
+      "generation_seconds": {
+        "count": 3,
+        "mean": 7.955366666666667,
+        "median": 7.9179,
+        "p95": 8.22417,
+        "max": 8.2582
+      },
+      "first_audio_available_seconds": {
+        "count": 3,
+        "mean": 10.526766666666667,
+        "median": 7.9284,
+        "p95": 15.149099999999999,
+        "max": 15.9514
+      },
+      "speech_generation_seconds": {
+        "count": 3,
+        "mean": 2.5714333333333332,
+        "median": 0.0106,
+        "p95": 6.924939999999999,
+        "max": 7.6932
+      }
+    },
+    "reasoning": {
+      "first_text_seconds": {
+        "count": 0
+      },
+      "generation_seconds": {
+        "count": 0
+      },
+      "first_audio_available_seconds": {
+        "count": 0
+      },
+      "speech_generation_seconds": {
+        "count": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Raphael: Open interface",
+      "type": "process",
+      "command": "${workspaceFolder}/engines/python/python.exe",
+      "args": ["-E", "-s", "-B", "${workspaceFolder}/desktop.py", "--open"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
+      "label": "Raphael: Background",
+      "type": "process",
+      "command": "${workspaceFolder}/engines/python/python.exe",
+      "args": ["-E", "-s", "-B", "${workspaceFolder}/desktop.py", "--background"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
+      "label": "Raphael: Stop",
+      "type": "process",
+      "command": "${workspaceFolder}/engines/python/python.exe",
+      "args": ["-E", "-s", "-B", "${workspaceFolder}/desktop.py", "--exit"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": []
+    },
+    {
+      "label": "Raphael: Backend tests",
+      "type": "process",
+      "command": "${workspaceFolder}/engines/python/python.exe",
+      "args": ["-E", "-s", "-B", "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py", "-q"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "problemMatcher": [],
+      "group": "test"
+    }
+  ]
+}

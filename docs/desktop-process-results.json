@@ -1,0 +1,11 @@
+{
+  "result": "passed",
+  "microphone_opened": false,
+  "startup_registration_changed": false,
+  "checks": [
+    "Native Windows process starts hidden with lazy models",
+    "Public status cannot disclose the desktop session token",
+    "Second launch connects to the owner-only IPC and exits without another backend",
+    "Explicit IPC Exit stops the original process without relaunch"
+  ]
+}

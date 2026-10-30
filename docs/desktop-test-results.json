@@ -1,0 +1,19 @@
+{
+  "result": "passed",
+  "engines": "simulated",
+  "audio_devices": "simulated",
+  "checks": [
+    "Idle is hidden; microphone closed; models lazy; no orb paint timer",
+    "Every interaction setting has a native control; orb and settings rendered",
+    "Cold recognition waits for readiness without claiming the microphone is on or opening the browser",
+    "Wake phrase activates without a browser; unrelated speech does not activate; shortcut activation gets a full listening window",
+    "Chat streams into ordered speech and enters follow-up with conversation context",
+    "A second spoken turn preserves context and returns to follow-up without opening the main interface",
+    "Audio amplitude is smoothed; thinking releases the pulse; re-enabling resumes animation; repeated state updates do not starve low-resource frames",
+    "Recognition failure ends the listening state and reports a useful recovery action",
+    "Timeout hides orb; immediate mute closes capture; no stale output survives",
+    "Interruption preserves the question and labeled partial answer exactly once",
+    "Start with Windows enables wake/background; Disable removes its shortcut; failed saves roll back startup changes",
+    "Exit stops timers, overlay, audio, hotkeys and tray"
+  ]
+}
